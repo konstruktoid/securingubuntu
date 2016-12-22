@@ -1,0 +1,14 @@
+== Skeleton
+
+=== Description
+
+=== Rationale
+
+=== Audit
+
+=== Remediation
+
+==== shell
+
+==== Ansible
+

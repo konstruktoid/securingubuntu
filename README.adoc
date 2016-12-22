@@ -1,1 +1,6 @@
-= Just a test
+= Test
+:leveloffset: 1
+
+include::skeleton.adoc[]
+
+include::ufw.adoc[]
