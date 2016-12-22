@@ -1,0 +1,6 @@
+= Summary
+
+. link:ufw_installed.adoc[Verify that UFW is installed]
+. link:ufw_enabled.adoc[Verify that UFW is enabled]
+. link:skeleton.adoc[Skeleton file]
+. Unfinished
