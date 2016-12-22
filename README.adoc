@@ -6,7 +6,3 @@ Thomas Sjögren
 :icons:
 :numbered:
 :website: https://www.gitbook.com/book/konstruktoid/securing-ubuntu/details
-
-include::ufw_installed.adoc[]
-
-include::ufw_enabled.adoc[]

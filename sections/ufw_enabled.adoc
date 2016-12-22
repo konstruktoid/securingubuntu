@@ -1,4 +1,4 @@
-= Verify that UFW is installed
+= Verify that UFW is enabled
 
 == Description
 
