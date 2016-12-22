@@ -1,6 +1,12 @@
-= Test
-:leveloffset: 1
+= Securing Ubuntu
+Thomas Sjögren
+:leveloffset: auto
+:Author Initials: TSJ
+:toc:
+:icons:
+:numbered:
+:website: https://www.gitbook.com/book/konstruktoid/securing-ubuntu/details
 
-include::skeleton.adoc[]
+include::ufw_installed.adoc[]
 
-include::ufw.adoc[]
+include::ufw_enabled.adoc[]

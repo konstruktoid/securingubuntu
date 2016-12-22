@@ -1,19 +1,19 @@
-== Verify that UFW is installed
+= Verify that UFW is installed
 
-=== Description
+== Description
 
 Verify that `ufw`, the "Uncomplicated Firewall", is installed.
 
-=== Rationale
+== Rationale
 
 When you turn UFW on, it uses a default set of rules (profile)
 that should be fine for the average home user. That's at least
 the goal of the Ubuntu developers. In short, all 'incoming' is being denied,
 with some exceptions to make things easier for home users.
 
-=== Audit
+== Audit
 
-[shell]
+[source,shell]
 ----
 @test "Verify that UFW is installed" {
   run bash -c "dpkg -l | grep ii.*ufw.*firewall"
@@ -21,15 +21,18 @@ with some exceptions to make things easier for home users.
 }
 ----
 
-=== Remediation
+== Remediation
 
-==== shell
+=== shell
 
-`apt -y install ufw`
+[source,shell]
+----
+apt -y install ufw
+----
 
-==== Ansible
+=== Ansible
 
-[yaml]
+[source,py]
 ----
 - name: ubuntu ufw installation
   become: yes
@@ -45,3 +48,5 @@ with some exceptions to make things easier for home users.
     - packages
     - security
 ----
+
+== References
