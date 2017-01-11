@@ -3,4 +3,3 @@
 . link:sections/ufw_installed.adoc[Verify that UFW is installed]
 . link:sections/ufw_enabled.adoc[Verify that UFW is enabled]
 . link:sections/skeleton.adoc[Skeleton file]
-. Unfinished
