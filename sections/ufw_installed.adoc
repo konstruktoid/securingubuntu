@@ -41,7 +41,6 @@ apt -y install ufw
     name: ufw
     state: latest
     install_recommends: no
-  when: ansible_distribution == "Ubuntu"
   tags:
     - apt
     - ufw
