@@ -1,6 +1,46 @@
 = Glossary
 
+== Ansible
+
+Ansible is a automation language that can describe an IT application
+infrastructure. https://www.ansible.com/[https://www.ansible.com/]
+
+== Bats
+
+Bats is a TAP-compliant testing framework for Bash.
+https://github.com/sstephenson/bats[https://github.com/sstephenson/bats]
+
+== CIS
+
+The Center for Internet Security (CIS) is a organization dedicated to
+enhancing the cybersecurity readiness and response among public and private
+sector entities. https://www.cisecurity.org/[https://www.cisecurity.org/]
+
+== DISA
+
+The Defense Information Systems Agency provides, operates, and assures command
+and control and information-sharing capabilities and a globally accessible
+enterprise information infrastructure.
+http://www.disa.mil/[http://www.disa.mil/]
+
 == Magic
 
 Sufficiently advanced technology, beyond the understanding of the
 observer producing a sense of wonder.
+
+== STIG
+
+The Security Technical Implementation Guides (STIGs) and the NSA Guides are
+the configuration standards for DOD IA and IA-enabled devices/systems.
+http://iase.disa.mil/stigs/Pages/index.aspx[http://iase.disa.mil/stigs/Pages/index.aspx]
+
+== TAP
+
+TAP, the Test Anything Protocol, is a simple text-based interface between
+testing modules in a test harness.
+http://testanything.org/[http://testanything.org/]
+
+== Ubuntu
+
+Ubuntu is a Debian-based Linux operating system.
+https://www.ubuntu.com/[https://www.ubuntu.com/]
