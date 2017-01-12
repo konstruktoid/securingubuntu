@@ -6,10 +6,9 @@ Verify that `ufw`, the "Uncomplicated Firewall", is installed.
 
 == Rationale
 
-When you turn UFW on, it uses a default set of rules (profile)
-that should be fine for the average home user. That's at least
-the goal of the Ubuntu developers. In short, all 'incoming' is being denied,
-with some exceptions to make things easier for home users.
+The default firewall configuration tool for Ubuntu is ufw. Developed to ease
+iptables firewall configuration, ufw provides a user friendly way to create
+an IPv4 or IPv6 host-based firewall. By default UFW is disabled.
 
 == Audit
 

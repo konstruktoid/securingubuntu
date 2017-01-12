@@ -1,0 +1,46 @@
+= Verify that UFW has a default deny policy
+
+== Description
+
+Verify that `ufw` has a default deny policy for incoming connections.
+
+== Rationale
+
+Don't allow incoming connections by default.
+
+== Audit
+
+[source,shell]
+----
+@test "Verify UFW default deny policy" {
+  run bash -c "ufw status verbose | grep 'deny (incoming)'"
+  [ "$status" -eq 0 ]
+}
+----
+
+== Remediation
+
+=== shell
+
+[source,shell]
+----
+ufw default deny incoming
+----
+
+=== Ansible
+
+[source,py]
+----
+- name: ufw policy deny
+  become: yes
+  become_method: sudo
+  ufw:
+    policy: deny
+  tags:
+    - apt
+    - ufw
+    - packages
+    - security
+----
+
+== References
