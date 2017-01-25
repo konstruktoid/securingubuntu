@@ -6,3 +6,8 @@ Thomas Sjögren
 :icons:
 :numbered:
 :website: https://www.gitbook.com/book/konstruktoid/securing-ubuntu/details
+
+Something about this started out as a gitbook test and the idea to write some
+documentation based on https://github.com/konstruktoid/hardening and
+https://github.com/konstruktoid/ansible-role-hardening.
+
