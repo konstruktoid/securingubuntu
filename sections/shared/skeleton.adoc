@@ -1,15 +1,36 @@
-= Skeleton
+= Skeleton title
 
 == Description
 
+What does this do?
+
 == Rationale
 
+Why should I do it?
+
 == Audit
+
+[source,shell]
+----
+Bats test
+----
 
 == Remediation
 
 === shell
 
+[source,shell]
+----
+shell instruction
+----
+
 === Ansible
 
+[source,py]
+----
+Ansible task
+----
+
 == References
+
+CIS, STIG et al references
