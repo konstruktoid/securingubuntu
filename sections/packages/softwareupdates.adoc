@@ -1,0 +1,71 @@
+= Ensure installed software is up to date
+
+== Description
+
+Keeping installed software up to date is important in order to limit
+the number of bugs or vulnerabilities.
+
+== Rationale
+
+Minimizing the number of bugs or vulnerabilities also reduces the
+attack surface.
+
+== Audit
+
+[source,shell]
+----
+apt list --upgradable
+----
+
+== Remediation
+
+=== shell
+
+[source,shell]
+----
+apt update && apt upgrade
+----
+
+=== Ansible
+
+[source,py]
+----
+- name: apt update
+  become: yes
+  become_method: sudo
+  apt:
+    update_cache: yes
+    cache_valid_time: 1800
+  tags:
+    - apt
+    - security
+
+- name: apt upgrade
+  become: yes
+  become_method: sudo
+  apt:
+    upgrade: safe
+  notify:
+    - apt-get autoremove
+    - apt-get clean
+  tags:
+    - apt
+    - security
+----
+
+==== Handlers
+
+[source,py]
+----
+- name: apt-get autoremove
+  become: yes
+  become_method: sudo
+  command: apt-get -y autoremove
+
+- name: apt-get clean
+  become: yes
+  become_method: sudo
+  command: apt-get -y clean
+----
+
+== References
