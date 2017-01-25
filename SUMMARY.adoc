@@ -3,4 +3,5 @@
 . link:sections/ufw/ufw_installed.adoc[Verify that UFW is installed]
 . link:sections/ufw/ufw_enabled.adoc[Verify that UFW is enabled]
 . link:sections/ufw/ufw_deny.adoc[Verify that UFW has a default deny policy]
+. link:sections/kernel/networkmodules.adoc[Disable unused network protocols]
 . link:sections/shared/skeleton.adoc[Skeleton file]
