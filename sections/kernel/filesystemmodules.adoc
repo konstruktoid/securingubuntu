@@ -1,0 +1,130 @@
+= Disable unused filesystems
+
+== Description
+
+The kernel supports multiple filesystems that might not be in use
+by the system.
+
+== Rationale
+
+If the filesystems are not needed, they should be disabled, reducing
+the potential attack surface.
+
+== Audit
+
+[source,shell]
+----
+@test "Verify that kernel module cramfs is disabled" {
+  run bash -c "grep 'install cramfs /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module freevxfs is disabled" {
+  run bash -c "grep 'install freevxfs /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module jffs2 is disabled" {
+  run bash -c "grep 'install jffs2 /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module hfs is disabled" {
+  run bash -c "grep 'install hfs /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module hfsplus is disabled" {
+  run bash -c "grep 'install hfsplus /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module squashfs is disabled" {
+  run bash -c "grep 'install squashfs /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module udf is disabled" {
+  run bash -c "grep 'install udf /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+@test "Verify that kernel module vfat is disabled" {
+  run bash -c "grep 'install udf /bin/true' /etc/modprobe.d/disablefs.conf"
+  [ "$status" -eq 0 ]
+}
+----
+
+== Remediation
+
+=== shell
+
+[source,shell]
+----
+FS="cramfs freevxfs jffs2 hfs hfsplus squashfs udf vfat"
+for disable in $FS; do
+  if ! grep -q "$disable" /etc/modprobe.d/disablefs.conf 2> /dev/null; then
+    echo "install $disable /bin/true" >> /etc/modprobe.d/disablefs.conf
+  fi
+done
+----
+
+=== Ansible
+
+[source,py]
+----
+- name: disablefs.conf
+  become: yes
+  become_method: sudo
+  file:
+    state: touch
+    path: /etc/modprobe.d/disablefs.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: disable file system kernel modules
+  become: yes
+  become_method: sudo
+  lineinfile:
+    dest: /etc/modprobe.d/disablefs.conf
+    line: "install {{ item }} /bin/true"
+  with_items:
+    - cramfs
+    - freevxfs
+    - jffs2
+    - hfs
+    - hfsplus
+    - squashfs
+    - udf
+    - vfat
+  tags:
+    - modprobe
+    - security
+----
+
+== References
+
+CCE-80137-3, CCE-80138-1, CCE-80139-9, CCE-80140-7, CCE-80141-5, CCE-80142-3,
+CCE-80143-1

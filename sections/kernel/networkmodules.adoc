@@ -89,3 +89,5 @@ the potential attack surface.
 ----
 
 == References
+
+CCE-26828-4, CCE-27106-4
