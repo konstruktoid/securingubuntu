@@ -1,4 +1,4 @@
-= Verify DSHELL in /etc/adduser.conf
+= Set default shell to /bin/false in /etc/adduser.conf
 
 == Description
 

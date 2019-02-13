@@ -1,8 +1,8 @@
 = Summary
 
-. link:sections/adduser/verify_dshell_in_adduser.adoc[Verify DSHELL in /etc/adduser.conf]
-. link:sections/adduser/verify_inactive_in_useradd.adoc[Skeleton title]
-. link:sections/adduser/verify_shell_in_useradd.adoc[Verify SHELL in /etc/default/useradd]
+. link:sections/adduser/verify_dshell_in_adduser.adoc[Set default shell to /bin/false in /etc/adduser.conf]
+. link:sections/adduser/verify_inactive_in_useradd.adoc[Disable inactive accounts]
+. link:sections/adduser/verify_shell_in_useradd.adoc[Set default shell to /bin/false in /etc/default/useradd]
 . link:sections/aide/verify_aide_timer_is_enabled.adoc[Skeleton title]
 . link:sections/apparmor/verify_pam_apparmor.adoc[Skeleton title]
 . link:sections/apport/verify_that_apport_is_masked.adoc[Skeleton title]

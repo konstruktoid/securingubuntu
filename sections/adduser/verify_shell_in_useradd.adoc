@@ -1,4 +1,4 @@
-= Verify SHELL in /etc/default/useradd
+= Set default shell to /bin/false in /etc/default/useradd
 
 == Description
 
@@ -16,6 +16,11 @@ Require an administrative user to actively set a valid login shell.
   run bash -c "grep '^SHELL=/bin/false$' /etc/default/useradd"
   [ "$status" -eq 0 ]
 }
+----
+
+[source,shell]
+----
+useradd -D | grep '^SHELL'
 ----
 
 == Remediation

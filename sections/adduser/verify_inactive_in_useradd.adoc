@@ -1,18 +1,29 @@
-= Skeleton title
+= Disable inactive accounts
 
 == Description
 
-What does this do?
+Accounts that have been inactive for a number of days after password expiration
+should be disabled.
 
 == Rationale
 
-Why should I do it?
+Inactive identifiers pose a risk to systems and applications because attackers
+may exploit an inactive identifier and potentially obtain undetected access to
+the system.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify INACTIVE in /etc/default/useradd" {
+  run bash -c "grep '^INACTIVE=35$' /etc/default/useradd"
+  [ "$status" -eq 0 ]
+}
+----
+
+[source,shell]
+----
+useradd -D | grep '^INACTIVE'
 ----
 
 == Remediation
@@ -21,16 +32,12 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+sed -i 's/^# INACTIVE=.*/INACTIVE=35/' "/etc/default/useradd"
 ----
 
 == References
 
-CIS, STIG et al references
+STIG-ID: UBTU-16-010280 +
+CIS RHEL7 Benchmark 2.2.0: 5.4.1.4 +
+CIS Ubuntu 18.04 v1.0.0: 5.4.1.4 +
+https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html[https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html]
