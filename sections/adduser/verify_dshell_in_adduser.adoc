@@ -2,17 +2,20 @@
 
 == Description
 
-What does this do?
+Set `/bin/false` as the default shell to be used for all new users.
 
 == Rationale
 
-Why should I do it?
+Require an administrative user to actively set a valid login shell.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify DSHELL in /etc/adduser.conf" {
+  run bash -c "grep '^DSHELL=/bin/false$' /etc/adduser.conf"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +24,9 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+sed -i 's/DSHELL=.*/DSHELL=\/bin\/false/' "/etc/adduser.conf"
 ----
 
 == References
 
-CIS, STIG et al references
+https://manpages.ubuntu.com/manpages/bionic/en/man5/adduser.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/adduser.conf.5.html]

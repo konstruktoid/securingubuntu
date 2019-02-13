@@ -1,18 +1,21 @@
-= Skeleton title
+= Verify SHELL in /etc/default/useradd
 
 == Description
 
-What does this do?
+Set `/bin/false` as the default shell to be used for all new users.
 
 == Rationale
 
-Why should I do it?
+Require an administrative user to actively set a valid login shell.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify SHELL in /etc/default/useradd" {
+  run bash -c "grep '^SHELL=/bin/false$' /etc/default/useradd"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +24,9 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+sed -i 's/SHELL=.*/SHELL=\/bin\/false/' "/etc/default/useradd"
 ----
 
 == References
 
-CIS, STIG et al references
+https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html[https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html]
