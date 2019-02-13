@@ -3,18 +3,28 @@
 == Ansible
 
 Ansible is a automation language that can describe an IT application
-infrastructure. https://www.ansible.com/[https://www.ansible.com/]
+infrastructure.
+https://www.ansible.com/[https://www.ansible.com/]
 
 == Bats
 
 Bats is a TAP-compliant testing framework for Bash.
 https://github.com/sstephenson/bats[https://github.com/sstephenson/bats]
 
+== CCE
+
+Common Configuration Enumeration provides unique identifiers to security-related
+system configuration issues in order to improve workflow by facilitating fast
+and accurate correlation of configuration data across multiple information
+sources and tools.
+https://csrc.nist.gov/Projects/Security-Content-Automation-Protocol/Common-Configuration-Enumeration-(CCE)[https://csrc.nist.gov/Projects/Security-Content-Automation-Protocol/Common-Configuration-Enumeration-(CCE)]
+
 == CIS
 
 The Center for Internet Security (CIS) is a organization dedicated to
 enhancing the cybersecurity readiness and response among public and private
-sector entities. https://www.cisecurity.org/[https://www.cisecurity.org/]
+sector entities.
+https://www.cisecurity.org/[https://www.cisecurity.org/]
 
 == DISA
 
