@@ -18,7 +18,8 @@ find ../hardening/scripts/ -type f | while read -r f; do
   done
 done
 
-echo "= Summary" > ./SUMMARY.adoc
+echo "= Summary
+" > ./SUMMARY.adoc
 find ./sections -name '*.adoc' | sort | while read -r sectfile; do
   sectitle="$(grep -Eo '^=\s.*' "${sectfile}" | tr -d '=' | sed 's/^ //g')"
   sectpath="$(echo "$sectfile" | sed 's/\.\///g' | tr -d '^ ')"

@@ -1,4 +1,5 @@
 = Summary
+
 . link:sections/adduser/verify_dshell_in_adduser.adoc[Verify DSHELL in /etc/adduser.conf]
 . link:sections/adduser/verify_inactive_in_useradd.adoc[Skeleton title]
 . link:sections/adduser/verify_shell_in_useradd.adoc[Skeleton title]
