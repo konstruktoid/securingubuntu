@@ -1,18 +1,23 @@
-= Skeleton title
+= Enable pam_apparmor
 
 == Description
 
-What does this do?
+Configure `pam_apparmor` to attach profiles based on the user or task level.
 
 == Rationale
 
-Why should I do it?
+`pam_apparmor` can be configured to ensure that only the privileges
+explicitly granted in the AppArmor configuration files are available to the
+user or task.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify pam_apparmor" {
+  run bash -c "grep 'session.*pam_apparmor.so order=user,group,default' /etc/pam.d/*"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +26,11 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+if ! grep 'session.*pam_apparmor.so order=user,group,default' /etc/pam.d/*; then
+  echo 'session optional pam_apparmor.so order=user,group,default' > /etc/pam.d/apparmor
+fi
 ----
 
 == References
 
-CIS, STIG et al references
+https://gitlab.com/apparmor/apparmor/wikis/Pam_apparmor[https://gitlab.com/apparmor/apparmor/wikis/Pam_apparmor]
