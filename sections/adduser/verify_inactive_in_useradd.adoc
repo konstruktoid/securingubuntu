@@ -5,6 +5,9 @@
 Accounts that have been inactive for a number of days after password expiration
 should be disabled.
 
+The amount of days before expiration should be adapted to
+the organizational policy, but should not exceed 35 days.
+
 == Rationale
 
 Inactive identifiers pose a risk to systems and applications because attackers
@@ -38,6 +41,7 @@ sed -i 's/^# INACTIVE=.*/INACTIVE=35/' "/etc/default/useradd"
 == References
 
 STIG-ID: UBTU-16-010280 +
-CIS RHEL7 Benchmark 2.2.0: 5.4.1.4 +
+STIG-ID: RHEL-07-010310 +
+CIS RHEL 7 Benchmark 2.2.0: 5.4.1.4 +
 CIS Ubuntu 18.04 v1.0.0: 5.4.1.4 +
 https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html[https://manpages.ubuntu.com/manpages/bionic/en/man8/useradd.8.html]
