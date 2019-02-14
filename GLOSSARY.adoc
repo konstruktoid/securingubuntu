@@ -21,7 +21,7 @@ https://csrc.nist.gov/Projects/Security-Content-Automation-Protocol/Common-Confi
 
 == CIS
 
-The Center for Internet Security (CIS) is a organization dedicated to
+The Center for Internet Security is a organization dedicated to
 enhancing the cybersecurity readiness and response among public and private
 sector entities.
 https://www.cisecurity.org/[https://www.cisecurity.org/]
@@ -40,9 +40,14 @@ observer producing a sense of wonder.
 
 == STIG
 
-The Security Technical Implementation Guides (STIGs) and the NSA Guides are
+The Security Technical Implementation Guides are
 the configuration standards for DOD IA and IA-enabled devices/systems.
 http://iase.disa.mil/stigs/Pages/index.aspx[http://iase.disa.mil/stigs/Pages/index.aspx]
+
+== RHEL
+
+Red Hat Enterprise Linux is a Linux distribution.
+https://www.redhat.com[https://www.redhat.com].
 
 == TAP
 
@@ -52,5 +57,5 @@ http://testanything.org/[http://testanything.org/]
 
 == Ubuntu
 
-Ubuntu is a Debian-based Linux operating system.
+Ubuntu is a Debian-based Linux distribution.
 https://www.ubuntu.com/[https://www.ubuntu.com/]
