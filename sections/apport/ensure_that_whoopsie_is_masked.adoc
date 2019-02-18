@@ -40,5 +40,5 @@ systemctl mask whoopsie.service
 
 == References
 
-https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts[EUD Security Guidance: Ubuntu 18.04 LTS]
+https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts[EUD Security Guidance: Ubuntu 18.04 LTS] +
 https://wiki.ubuntu.com/ErrorTracker[https://wiki.ubuntu.com/ErrorTracker]
