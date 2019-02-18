@@ -5,7 +5,7 @@ find ../hardening/scripts/ -type f | while read -r f; do
   find ../hardening/tests/ -type f -name "*${DIRECTORY}*" | while read -r t; do
     grep -Ro '@test ".*"' "$t" | tr -d "'*$\"" |  \
     sed -e 's/.*@test //g' -e 's/ /_/g' -e 's/\//_/g' -e 's/__/_/g' -e 's/\./_/g' -e 's/_$//g' | \
-    tr '[:upper:]' '[:lower:]' | while read -r sectskel; do
+    tr '[:upper:]' '[:lower:]' | sed 's/verify/ensure/g' | while read -r sectskel; do
       cd "./sections/${DIRECTORY}" || exit 1
       if [ -f ../../sections/shared/skeleton.adoc ] && ! [ -f "./${sectskel}.adoc" ]; then
         cp --verbose "../../sections/shared/skeleton.adoc" "./${sectskel}.adoc"
