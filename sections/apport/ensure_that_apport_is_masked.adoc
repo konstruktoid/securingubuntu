@@ -35,6 +35,7 @@ isMasked() {
 
 [source,shell]
 ----
+sed -i 's/enabled=.*/enabled=0/' /etc/default/apport
 systemctl stop apport.service
 systemctl mask apport.service
 ----

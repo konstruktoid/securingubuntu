@@ -1,18 +1,27 @@
-= Skeleton title
+= Ensure Apport is not installed.
 
 == Description
 
-What does this do?
+Ensure that the `apport` service is not installed.
 
 == Rationale
 
-Why should I do it?
+Apport collects potentially sensitive data, such as core dumps, stack traces,
+and log files. They can contain passwords, credit card numbers, serial numbers,
+and other private material.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+packageInstalled() {
+  dpkg -l | awk '{print $1, $2}' | grep "^ii.* $1"
+}
+
+@test "Verify that apport is not installed" {
+  run packageInstalled 'apport'
+  [ "$status" -eq 1 ]
+}
 ----
 
 == Remediation
@@ -21,16 +30,10 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+apt-get --assume-yes purge apport*
 ----
 
 == References
 
-CIS, STIG et al references
+https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts[EUD Security Guidance: Ubuntu 18.04 LTS]
+https://wiki.ubuntu.com/Apport[https://wiki.ubuntu.com/Apport]

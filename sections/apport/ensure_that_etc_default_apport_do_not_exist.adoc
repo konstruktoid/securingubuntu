@@ -1,18 +1,24 @@
-= Skeleton title
+= Ensure that /etc/default/apport do not exist.
 
 == Description
 
-What does this do?
+Ensure that the `apport` packages are purged and `/etc/default/apport` has been
+removed.
 
 == Rationale
 
-Why should I do it?
+Apport collects potentially sensitive data, such as core dumps, stack traces,
+and log files. They can contain passwords, credit card numbers, serial numbers,
+and other private material.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify that /etc/default/apport do not exist" {
+  run bash -c "stat /etc/default/apport"
+  [ "$status" -eq 1 ]
+}
 ----
 
 == Remediation
@@ -21,16 +27,11 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+apt-get --assume-yes purge apport*
+rm /etc/default/apport
 ----
 
 == References
 
-CIS, STIG et al references
+https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts[EUD Security Guidance: Ubuntu 18.04 LTS]
+https://wiki.ubuntu.com/Apport[https://wiki.ubuntu.com/Apport]
