@@ -28,20 +28,58 @@ https://www.cisecurity.org/[https://www.cisecurity.org/]
 
 == DISA
 
-The Defense Information Systems Agency provides, operates, and assures command
-and control and information-sharing capabilities and a globally accessible
-enterprise information infrastructure.
+The United States Defense Information Systems Agency provides, operates, and
+assures command and control and information-sharing capabilities and a globally
+accessible enterprise information infrastructure.
 http://www.disa.mil/[http://www.disa.mil/]
+
+== DoD
+
+United States Department of Defense.
+https://www.defense.gov/[https://www.defense.gov/]
+
+== EUD
+
+End User Device.
+
+== GCHQ
+
+The Government Communications Headquarters is an intelligence and security
+organisation responsible for providing signals intelligence and information
+assurance to the government and armed forces of the United
+Kingdom.
+https://www.gchq.gov.uk/[https://www.gchq.gov.uk/]
+
+== IA
+
+Information assurance is the practice of assuring information and managing risks
+related to the use, processing, storage, and transmission of information or data
+and the systems and processes used for those purposes.
 
 == Magic
 
 Sufficiently advanced technology, beyond the understanding of the
 observer producing a sense of wonder.
 
+== NCSC
+
+The National Cyber Security Centre is an organisation of the United Kingdom
+Government that provides advice and support for the public and private sector
+in how to avoid computer security threats. Based in London, it became
+operational in October 2016, and its parent organisation is GCHQ.
+https://www.ncsc.gov.uk/[https://www.ncsc.gov.uk/]
+
+== NSA
+
+The National Security Agency is a national-level intelligence agency of the
+United States Department of Defense, under the authority of the Director of
+National Intelligence.
+https://www.nsa.gov/[https://www.nsa.gov/]
+
 == STIG
 
 The Security Technical Implementation Guides are
-the configuration standards for DOD IA and IA-enabled devices/systems.
+the configuration standards for DoD IA and IA-enabled devices/systems.
 http://iase.disa.mil/stigs/Pages/index.aspx[http://iase.disa.mil/stigs/Pages/index.aspx]
 
 == RHEL
