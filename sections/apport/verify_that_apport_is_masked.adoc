@@ -1,18 +1,32 @@
-= Skeleton title
+= Ensure Apport is masked
 
 == Description
 
-What does this do?
+Ensure that the `apport` service is masked if it is required to be installed.
 
 == Rationale
 
-Why should I do it?
+Apport collects potentially sensitive data, such as core dumps, stack traces,
+and log files. They can contain passwords, credit card numbers, serial numbers,
+and other private material.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+isMasked() {
+  isMasked=$(systemctl is-enabled "$1")
+  if [[ "$isMasked" = "masked" ]]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
+@test "Verify that apport is masked" {
+  run isMasked apport.service
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +35,11 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+systemctl stop apport.service
+systemctl mask apport.service
 ----
 
 == References
 
-CIS, STIG et al references
+https://www.ncsc.gov.uk/guidance/eud-security-guidance-ubuntu-1804-lts[EUD Security Guidance: Ubuntu 18.04 LTS]
+https://wiki.ubuntu.com/Apport[https://wiki.ubuntu.com/Apport]
