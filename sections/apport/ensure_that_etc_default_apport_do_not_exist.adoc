@@ -1,4 +1,4 @@
-= Ensure that /etc/default/apport do not exist.
+= Ensure that /etc/default/apport do not exist
 
 == Description
 

@@ -1,18 +1,23 @@
-= Skeleton title
+= Ensure APT do not allow AllowUnauthenticated
 
 == Description
 
-What does this do?
+Allowing unauthenticated repositories ignores if packages can't be
+authenticated and don't prompt about it.
 
 == Rationale
 
-Why should I do it?
+If authenticity isn't ensured in another way by the user itself, it is
+a security risk if data authenticity isn't ensured.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify APT AllowUnauthenticated" {
+  run bash -c "grep '^APT::Get::AllowUnauthenticated \"false\";$' /etc/apt/apt.conf.d/*"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +26,37 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+if ! grep '^APT::Get::AllowUnauthenticated' /etc/apt/apt.conf.d/* ; then
+  echo 'APT::Get::AllowUnauthenticated "false";' >> /etc/apt/apt.conf.d/01-vendor-ubuntu
+else
+  sed -i 's/.*APT::Get::AllowUnauthenticated.*/APT::Get::AllowUnauthenticated "false";/g' "$(grep -l 'APT::Get::AllowUnauthenticated' /etc/apt/apt.conf.d/*)"
+fi
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+---
+- name: configure apt
+  become: 'yes'
+  become_method: sudo
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/98apt-conf
+    mode: 0644
+    state: present
+    create: 'yes'
+    line: "{{ item }}"
+  with_items:
+    - 'APT::Get::AllowUnauthenticated "false";'
+  when: ansible_os_family == "Debian"
+  tags:
+    - apt
+    - security
+...
 ----
 
 == References
 
-CIS, STIG et al references
+STIG-ID: UBTU-16-010560
+https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html[https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html]

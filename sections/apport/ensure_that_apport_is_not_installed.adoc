@@ -1,4 +1,4 @@
-= Ensure Apport is not installed.
+= Ensure Apport is not installed
 
 == Description
 

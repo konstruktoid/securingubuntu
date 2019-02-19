@@ -1,18 +1,23 @@
-= Skeleton title
+= Ensure APT do not allow AllowRedirect
 
 == Description
 
-What does this do?
+Acquire::http::AllowRedirect controls whether APT will follow redirects, which
+is enabled by default.
 
 == Rationale
 
-Why should I do it?
+Acquire::http::AllowRedirect has been exploited to allows a network
+man-in-the-middle, and should be disabled if not needed.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify APT AllowRedirect" {
+  run bash -c "grep '^Acquire::http::AllowRedirect \"false\";$' /etc/apt/apt.conf.d/*"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +26,38 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+if ! grep '^Acquire::http::AllowRedirect' /etc/apt/apt.conf.d/* ; then
+  echo 'Acquire::http::AllowRedirect "false";' >> /etc/apt/apt.conf.d/01-vendor-ubuntu
+else
+  sed -i 's/.*Acquire::http::AllowRedirect*/Acquire::http::AllowRedirect "false";/g' "$(grep -l 'Acquire::http::AllowRedirect' /etc/apt/apt.conf.d/*)"
+fi
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+---
+- name: configure apt
+  become: 'yes'
+  become_method: sudo
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/98apt-conf
+    mode: 0644
+    state: present
+    create: 'yes'
+    line: "{{ item }}"
+  with_items:
+    - 'Acquire::http::AllowRedirect "false";'
+  when: ansible_os_family == "Debian"
+  tags:
+    - apt
+    - security
+...
 ----
 
 == References
 
-CIS, STIG et al references
+https://manpages.debian.org/stretch/apt/apt.conf.5.en.html[https://manpages.debian.org/stretch/apt/apt.conf.5.en.html]
+https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html]
+https://nvd.nist.gov/vuln/detail/CVE-2019-3462[https://nvd.nist.gov/vuln/detail/CVE-2019-3462]

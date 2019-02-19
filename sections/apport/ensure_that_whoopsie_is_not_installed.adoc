@@ -1,4 +1,4 @@
-= Ensure Whoopsie is not installed.
+= Ensure Whoopsie is not installed
 
 == Description
 
