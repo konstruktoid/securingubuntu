@@ -20,6 +20,7 @@ done
 
 echo "= Summary
 " > ./SUMMARY.adoc
+find ./ -name '*runtime*adoc' -type f -exec rm {} \;
 find ./sections -name '*.adoc' | sort | while read -r sectfile; do
   sectitle="$(grep -Eo '^=\s.*' "${sectfile}" | tr -d '=' | sed 's/^ //g')"
   sectpath="$(echo "$sectfile" | sed 's/\.\///g' | tr -d '^ ')"
