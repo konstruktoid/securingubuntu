@@ -13,7 +13,7 @@
 . link:sections/apport/ensure_that_whoopsie_is_not_installed.adoc[Ensure Whoopsie is not installed]
 . link:sections/aptget/ensure_apt_allowredirect.adoc[Ensure APT do not allow AllowRedirect]
 . link:sections/aptget/ensure_apt_allowunauthenticated.adoc[Ensure APT do not allow AllowUnauthenticated]
-. link:sections/aptget/ensure_apt_autocleaninterval.adoc[Skeleton title]
+. link:sections/aptget/ensure_apt_autocleaninterval.adoc[Ensure APT has AutocleanInterval configured]
 . link:sections/aptget/ensure_apt_automaticremove.adoc[Skeleton title]
 . link:sections/aptget/ensure_apt_install-recommends.adoc[Skeleton title]
 . link:sections/aptget/ensure_apt_install-suggests.adoc[Skeleton title]
