@@ -1,18 +1,25 @@
-= Skeleton title
+= Ensure APT has AutocleanInterval configured
 
 == Description
 
-What does this do?
+The AutocleanInterval setting clears out the local repository of retrieved
+package files that can no longer be downloaded.
+This allows a cache to be maintained over a long period of time without it
+growing out of control.
 
 == Rationale
 
-Why should I do it?
+Removing unused or unavailable packages and files, reduces the risk of
+filling the space of a partition or disk.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify APT AutocleanInterval" {
+  run bash -c "grep '^APT::Periodic::AutocleanInterval \"7\";$' /etc/apt/apt.conf.d/*"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +28,37 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+if ! grep '^APT::Periodic::AutocleanInterval "7";' /etc/apt/apt.conf.d/*; then
+  echo 'APT::Periodic::AutocleanInterval "7";' >> /etc/apt/apt.conf.d/10periodic
+else
+  sed -i 's/.*APT::Periodic::AutocleanInterval.*/APT::Periodic::AutocleanInterval "7";/g' "$(grep -l 'APT::Periodic::AutocleanInterval' /etc/apt/apt.conf.d/*)"
+fi
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+---
+- name: configure apt
+  become: 'yes'
+  become_method: sudo
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/98apt-conf
+    mode: 0644
+    state: present
+    create: 'yes'
+    line: "{{ item }}"
+  with_items:
+    - 'APT::Periodic::AutocleanInterval "7";'
+  when: ansible_os_family == "Debian"
+  tags:
+    - apt
+    - security
+...
 ----
 
 == References
 
-CIS, STIG et al references
+https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html]
+https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html[https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html]

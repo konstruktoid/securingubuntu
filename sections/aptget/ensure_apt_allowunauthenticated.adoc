@@ -8,7 +8,7 @@ authenticated and don't prompt about it.
 == Rationale
 
 If authenticity isn't ensured in another way by the user itself, it is
-a security risk if data authenticity isn't ensured.
+a security risk.
 
 == Audit
 
@@ -59,4 +59,5 @@ fi
 == References
 
 STIG-ID: UBTU-16-010560
+https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html]
 https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html[https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html]
