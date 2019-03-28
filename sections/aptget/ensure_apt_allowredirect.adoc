@@ -58,5 +58,5 @@ fi
 
 == References
 
-https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html]
+https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html] +
 https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html[https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html]

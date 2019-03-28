@@ -1,18 +1,22 @@
-= Skeleton title
+= Ensure APT has Install-Recommends configured
 
 == Description
 
-What does this do?
+The Install-Recommends setting makes apt-get or apt not consider recommended
+packages as a dependency for installing.
 
 == Rationale
 
-Why should I do it?
+Reducing the amount of installed packages might reduce any attack surface.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify APT Install-Recommends" {
+  run bash -c "grep '^APT::Install-Recommends \"false\";$' /etc/apt/apt.conf.d/*"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +25,37 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+if ! grep '^APT::Install-Recommends' /etc/apt/apt.conf.d/*; then
+  echo 'APT::Install-Recommends "false";' >> /etc/apt/apt.conf.d/01-vendor-ubuntu
+else
+  sed -i 's/.*APT::Install-Recommends.*/APT::Install-Recommends "false";/g' "$(grep -l 'APT::Install-Recommends' /etc/apt/apt.conf.d/*)"
+fi
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+---
+- name: configure apt
+  become: 'yes'
+  become_method: sudo
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/98apt-conf
+    mode: 0644
+    state: present
+    create: 'yes'
+    line: "{{ item }}"
+  with_items:
+    - 'APT::Get::Install-Recommends "false";'
+  when: ansible_os_family == "Debian"
+  tags:
+    - apt
+    - security
+...
 ----
 
 == References
 
-CIS, STIG et al references
+https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html[https://manpages.ubuntu.com/manpages/bionic/en/man5/apt.conf.5.html] +
+https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html[https://manpages.ubuntu.com/manpages/bionic/man8/apt-get.8.html]
