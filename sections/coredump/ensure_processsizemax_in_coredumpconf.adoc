@@ -2,12 +2,12 @@
 
 == Description
 
-ProcessSizeMax sets the maximum size in bytes of a core which will be processed.
-Core dumps exceeding this size may be stored, but the backtrace will not be
-generated.
+The `ProcessSizeMax` option sets the maximum size in bytes of a core which will
+be processed.  Core dumps exceeding this size may be stored, but the backtrace
+will not be generated.
 
-Setting Storage=none and ProcessSizeMax=0 disables all coredump handling except
-for a log entry.
+Setting `Storage=none` and `ProcessSizeMax=0` disables all coredump handling
+except for a log entry.
 
 == Rationale
 
