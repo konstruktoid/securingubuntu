@@ -2,7 +2,7 @@
 
 == Description
 
-The Remove-Unused-Dependencies setting removes all unused dependencies after
+The `Remove-Unused-Dependencies` setting removes all unused dependencies after
 a upgrade has finished.
 
 == Rationale

@@ -2,7 +2,7 @@
 
 == Description
 
-The AutomaticRemove setting is used to remove packages that were automatically
+The `AutomaticRemove` setting is used to remove packages that were automatically
 installed to satisfy dependencies for other packages and are now no longer
 needed.
 

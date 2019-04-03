@@ -2,7 +2,7 @@
 
 == Description
 
-The `Storage` option controls where to store cores.  One of "none", "external",
+The `Storage` setting controls where to store cores.  One of "none", "external",
 and "journal". When "none", the core dumps may be logged (including the
 backtrace if possible), but not stored permanently.
 

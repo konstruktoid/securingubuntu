@@ -2,12 +2,12 @@
 
 == Description
 
-Acquire::http::AllowRedirect controls whether APT will follow redirects, which
+`Acquire::http::AllowRedirect` controls whether APT will follow redirects, which
 is enabled by default.
 
 == Rationale
 
-Acquire::http::AllowRedirect has been exploited to allows a network
+`Acquire::http::AllowRedirect` has been exploited to allows a network
 man-in-the-middle, and should be disabled if not needed.
 
 == Audit

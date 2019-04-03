@@ -2,8 +2,8 @@
 
 == Description
 
-The Install-Recommends setting makes apt-get or apt not consider recommended
-packages as a dependency for installing.
+The `Install-Recommends` setting makes `apt-get` or `apt` not consider
+recommended packages as a dependency for installing.
 
 == Rationale
 

@@ -2,7 +2,7 @@
 
 == Description
 
-The Install-Suggests setting makes apt-get or apt not consider
+The `Install-Suggests` setting makes `apt-get` or `apt` not consider
 suggested packages as a dependency for installing.
 
 == Rationale

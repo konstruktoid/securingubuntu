@@ -2,7 +2,7 @@
 
 == Description
 
-The AutocleanInterval setting clears out the local repository of retrieved
+The `AutocleanInterval` setting clears out the local repository of retrieved
 package files that can no longer be downloaded.
 This allows a cache to be maintained over a long period of time without it
 growing out of control.

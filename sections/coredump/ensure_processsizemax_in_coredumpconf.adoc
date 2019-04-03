@@ -2,7 +2,7 @@
 
 == Description
 
-The `ProcessSizeMax` option sets the maximum size in bytes of a core which will
+The `ProcessSizeMax` setting sets the maximum size in bytes of a core which will
 be processed.  Core dumps exceeding this size may be stored, but the backtrace
 will not be generated.
 
