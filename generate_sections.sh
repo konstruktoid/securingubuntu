@@ -21,7 +21,9 @@ done
 echo "= Summary
 " > ./SUMMARY.adoc
 find ./ -name '*runtime*adoc' -type f -exec rm {} \;
-rm -rf ./sections/pre ./sections/compilers
+
+# Clean level 2 settings for the moment
+rm -rf ./sections/pre ./sections/compilers ./sections/auditd ./sections/sysctl
 
 find ./sections -name '*.adoc' | sort | while read -r sectfile; do
   sectitle="$(grep -Eo '^=\s.*' "${sectfile}" | tr -d '=' | sed 's/^ //g')"
