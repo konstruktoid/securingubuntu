@@ -1,18 +1,24 @@
-= Skeleton title
+= Verify cron logging is enabled
 
 == Description
 
-What does this do?
+
+Cron logging can be used to trace the successful or unsuccessful execution of
+cron jobs.
 
 == Rationale
 
-Why should I do it?
+Cron logging be used to spot intrusions into the use of the cron
+facility by unauthorized and malicious users.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Verify cron logging is enabled" {
+  run bash -c "grep '^cron.\*.*/var/log/cron.log$' /etc/rsyslog.d/50-default.conf"
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +27,10 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
-----
-
-=== Ansible
-
-[source,py]
-----
-Ansible task
+sed -i 's/^#cron./cron./' /etc/rsyslog.d/50-default.conf
 ----
 
 == References
 
-CIS, STIG et al references
+STIG-ID: UBTU-16-030460 +
+STIG-ID: RHEL-07-021100 +

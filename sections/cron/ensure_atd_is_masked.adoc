@@ -1,18 +1,35 @@
-= Skeleton title
+= Ensure atd is masked
 
 == Description
 
-What does this do?
+The `at` and `batch` commands can be used to schedule tasks that are meant
+to be executed only once. This allows delayed execution in a manner similar
+to `cron`, except that it is not recurring.
 
 == Rationale
 
-Why should I do it?
+The `atd` service could be used by an unsophisticated insider to carry out
+activities outside of a normal login session, which could complicate
+accountability. Furthermore, the need to schedule tasks with `at` or `batch`
+is not common.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+isMasked() {
+  isMasked=$(systemctl is-enabled "$1")
+  if [[ "$isMasked" = "masked" ]]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
+@test "Ensure atd is masked" {
+  run isMasked atd.service
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +38,31 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+systemctl mask atd.service
+systemctl stop atd.service
+systemctl daemon-reload
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+- name: mask atd
+  become: 'yes'
+  become_method: sudo
+  systemd:
+    name: atd
+    masked: 'yes'
+    enabled: 'no'
+    state: stopped
+  ignore_errors: true
+  tags:
+    - at
+    - systemd
+    - security
+...
 ----
 
 == References
 
-CIS, STIG et al references
+CCE-80345-2
