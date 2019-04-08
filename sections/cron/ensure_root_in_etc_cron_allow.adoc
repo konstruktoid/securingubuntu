@@ -1,18 +1,35 @@
-= Skeleton title
+= Ensure root in /etc/cron.allow
 
 == Description
 
-What does this do?
+Configure /etc/cron.allow to allow specific users to use these services.
 
 == Rationale
 
-Why should I do it?
+It is easier to manage an allow list than a deny list.
+crontab.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+oneEntry() {
+  grepWord="$1"
+  grepFile="$2"
+  maxLines="$3"
+  lineCount=$(wc -l "$grepFile")
+
+  if [[ $lineCount -gt $maxLines ]]; then
+    exit 1
+  fi
+
+  grep "$grepWord" "$grepFile"
+}
+
+@test "Verify root in /etc/cron.allow" {
+  run oneEntry root /etc/cron.allow 1
+  [ "$status" -eq 0 ]
+}
 ----
 
 == Remediation
@@ -21,16 +38,32 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+echo 'root' > /etc/cron.allow
+
+chown root:root /etc/cron*
+chmod og-rwx /etc/cron*
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+- name: allow root cron
+  become: 'yes'
+  become_method: sudo
+  lineinfile:
+    line: "root"
+    dest: "{{ item }}"
+    mode: 0600
+    state: present
+    create: 'yes'
+  with_items:
+    - /etc/cron.allow
+  tags:
+    - cron
+    - security
 ----
 
 == References
 
-CIS, STIG et al references
+

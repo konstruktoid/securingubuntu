@@ -1,18 +1,24 @@
-= Skeleton title
+= Ensure /etc/cron.deny is removed
 
 == Description
 
-What does this do?
+Configure /etc/cron.allow and /etc/at.allow to allow specific users to use these
+services. If /etc/cron.allow or /etc/at.allow do not exist, then /etc/at.deny
+and /etc/cron.deny are checked. Any user not specifically defined in those files
+is allowed to use at and cron.
 
 == Rationale
 
-Why should I do it?
+It is easier to manage an allow list than a deny list.
 
 == Audit
 
 [source,shell]
 ----
-Bats test
+@test "Ensure /etc/cron.deny is removed" {
+  run test -f /etc/cron.deny
+  [ "$status" -eq 1 ]
+}
 ----
 
 == Remediation
@@ -21,16 +27,28 @@ Bats test
 
 [source,shell]
 ----
-shell instruction
+rm /etc/cron.deny 2> /dev/null
 ----
 
 === Ansible
 
 [source,py]
 ----
-Ansible task
+- name: remove cron.deny
+  become: 'yes'
+  become_method: sudo
+  file:
+    path: "{{ item }}"
+    state: absent
+  ignore_errors: true
+  with_items:
+    - /etc/cron.deny
+  tags:
+    - at
+    - security
 ----
 
 == References
 
-CIS, STIG et al references
+CIS RHEL 7 Benchmark 2.2.0: 5.1.8 +
+CIS Ubuntu 18.04 v1.0.0: 5.1.8

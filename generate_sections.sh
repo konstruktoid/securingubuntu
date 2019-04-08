@@ -30,3 +30,6 @@ find ./sections -name '*.adoc' | sort | while read -r sectfile; do
   sectpath="$(echo "$sectfile" | sed 's/\.\///g' | tr -d '^ ')"
   echo ". link:${sectpath}[${sectitle}]" >> ./SUMMARY.adoc
 done
+
+sed -i.bak '/Skeleton title/d' SUMMARY.adoc
+find ./ -name '*.bak' -type f -exec rm {} \;
