@@ -1,0 +1,68 @@
+= Ensure Ctrl-Alt-Delete is masked
+
+== Description
+
+Ensure the Ctrl-Alt-Del key sequence is masked.
+
+== Rationale
+
+A locally logged-on user who presses Ctrl-Alt-Delete, when at the console,
+can reboot the system. If accidentally pressed, as could happen in the case of
+a mixed OS environment, this can create the risk of short-term loss of
+availability of systems due to unintentional reboot.
+
+== Audit
+
+[source,shell]
+----
+isMasked() {
+  isMasked=$(systemctl is-enabled "$1")
+  if [[ "$isMasked" = "masked" ]]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
+@test "Ensure ctrl-alt-del is masked" {
+  run isMasked ctrl-alt-del.target
+  [ "$status" -eq 0 ]
+}
+----
+
+== Remediation
+
+=== shell
+
+[source,shell]
+----
+systemctl mask ctrl-alt-del.target
+----
+
+=== Ansible
+
+[source,py]
+----
+- name: disable ctrl-alt-del
+  become: 'yes'
+  become_method: sudo
+  systemd:
+    name: ctrl-alt-del.target
+    masked: 'yes'
+    enabled: 'no'
+    state: stopped
+  tags:
+    - systemd
+    - ctrl-alt-del
+    - security
+...
+----
+
+== References
+
+CCE-27511-5 +
+STIG-ID: UBTU-16-010630 +
+STIG-ID: RHEL-07-020230 +
+CIS RHEL 7 Benchmark 2.2.0:  +
+CIS Ubuntu 18.04 v1.0.0: 5.4.1.4 +
+https://www.freedesktop.org/software/systemd/man/systemd.special.html#ctrl-alt-del.target[https://www.freedesktop.org/software/systemd/man/systemd.special.html#ctrl-alt-del.target]

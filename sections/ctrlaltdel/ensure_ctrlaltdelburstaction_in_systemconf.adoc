@@ -1,0 +1,35 @@
+= Ensure CtrlAltDelBurstAction is set to none
+
+== Description
+
+Ensure `CtrlAltDelBurstAction` is set in `/etc/systemd/system.conf`.
+
+== Rationale
+
+A locally logged-on user who presses Ctrl-Alt-Delete, when at the console,
+can reboot the system.
+`CtrlAltDelBurstAction` defines what action will be performed if user presses
+Ctrl-Alt-Delete more than 7 times in 2s.
+
+== Audit
+
+[source,shell]
+----
+@test "Verify CtrlAltDelBurstAction in $SYSTEMCONF" {
+  run bash -c "grep '^CtrlAltDelBurstAction=none$' $SYSTEMCONF"
+  [ "$status" -eq 0 ]
+}
+----
+
+== Remediation
+
+=== shell
+
+[source,shell]
+----
+sed -i 's/^#CtrlAltDelBurstAction=.*/CtrlAltDelBurstAction=none/' /etc/systemd/system.conf
+----
+
+== References
+
+https://www.freedesktop.org/software/systemd/man/systemd-system.conf.html#CtrlAltDelBurstAction=[https://www.freedesktop.org/software/systemd/man/systemd-system.conf.html#CtrlAltDelBurstAction=]
