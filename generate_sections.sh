@@ -3,7 +3,7 @@ find ../hardening/scripts/ -type f | while read -r f; do
   DIRECTORY="$(echo "$f" | sed 's/.*_//g')"
   echo "./sections/${DIRECTORY}"
   find ../hardening/tests/ -type f -name "*${DIRECTORY}*" | while read -r t; do
-    grep -Ro '@test ".*"' "$t" | tr -d "'*$\"" |  \
+    grep -Ro '@test ".*"' "$t" | tr -d "'*$\"" | \
     sed -e 's/.*@test //g' -e 's/ /_/g' -e 's/\//_/g' -e 's/__/_/g' -e 's/\./_/g' -e 's/_$//g' | \
     tr '[:upper:]' '[:lower:]' | sed 's/verify/ensure/g' | while read -r sectskel; do
       cd "./sections/${DIRECTORY}" || exit 1

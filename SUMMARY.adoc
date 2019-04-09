@@ -26,3 +26,5 @@
 . link:sections/cron/ensure_etc_cron_deny_is_removed.adoc[Ensure /etc/cron.deny is removed]
 . link:sections/cron/ensure_root_in_etc_at_allow.adoc[Ensure root in /etc/at.allow]
 . link:sections/cron/ensure_root_in_etc_cron_allow.adoc[Ensure root in /etc/cron.allow]
+. link:sections/ctrlaltdel/ensure_ctrl-alt-del_is_masked.adoc[Ensure Ctrl-Alt-Delete is masked]
+. link:sections/ctrlaltdel/ensure_ctrlaltdelburstaction_in_systemconf.adoc[Ensure CtrlAltDelBurstAction is set to none]
