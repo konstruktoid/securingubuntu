@@ -80,7 +80,7 @@ https://www.nsa.gov/[https://www.nsa.gov/]
 
 The Security Technical Implementation Guides are
 the configuration standards for DoD IA and IA-enabled devices/systems.
-http://iase.disa.mil/stigs/Pages/index.aspx[http://iase.disa.mil/stigs/Pages/index.aspx]
+https://public.cyber.mil/stigs/[https://public.cyber.mil/stigs/]
 
 == RHEL
 
